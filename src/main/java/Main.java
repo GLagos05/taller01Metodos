@@ -5,18 +5,29 @@ public class Main {
 
     public static void menuCarrito() {
         int[] carrito = carritoCompras();
-        int productos = productosCeldas(carrito);
-        mostrasCantidades();
+        carrito = productosCeldas(carrito);
+        int sumaCarrito = sumatoriaProductos(carrito);
+        mostrasCantidades(sumaCarrito);
     }
 
-    public static void mostrasCantidades() {
-    }
-
-    public static int productosCeldas(int[] carrito) {
-        int cantidadProductos = (int)(Math.random()*15);
+    public static int sumatoriaProductos(int[] carrito) {
+        int sumatoria = 0;
         for (int i = 0; i < carrito.length; i++) {
+            sumatoria += carrito[i];
+        }
+        return sumatoria;
+    }
+
+    public static void mostrasCantidades(int sumaCarrito) {
+        System.out.println("El carrito contiene"+sumaCarrito+"productos");
+    }
+
+    public static int[] productosCeldas(int[] carrito) {
+        for (int i = 0; i < carrito.length; i++) {
+            int cantidadProductos = (int)(Math.random()*15);
             carrito[i] = cantidadProductos;
         }
+        return carrito;
     }
 
     public static int[] carritoCompras() {
