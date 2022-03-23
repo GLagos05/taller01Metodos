@@ -6,14 +6,34 @@ public class Main {
     public static void menuCarrito() {
         int[] carrito = carritoCompras();
         carrito = productosCeldas(carrito);
-        int sumaCarrito = sumatoriaProductos(carrito);
+        int sumaCarrito = sumatoria(carrito);
         mostrasCantidades(sumaCarrito);
+        int[] compras = preciosCelda(carrito);
+        compras = precioCarrito(compras,carrito);
+        int sumaCompras = sumatoria(compras);
+        mostrasCantidades(sumaCompras);
     }
 
-    public static int sumatoriaProductos(int[] carrito) {
-        int sumatoria = 0;
+    public static int[] precioCarrito(int[] compras, int[] carrito) {
         for (int i = 0; i < carrito.length; i++) {
-            sumatoria += carrito[i];
+            compras[i] *= carrito[i];
+        }
+        return compras;
+    }
+
+    public static int[] preciosCelda(int[] carrito) {
+        int[] compras = new int[carrito.length];
+        compras[0] = 500;
+        for (int i = 1; i < carrito.length; i++) {
+            compras[i] = carrito[i-1]+ 150;
+        }
+        return compras;
+    }
+
+    public static int sumatoria(int[] arreglo) {
+        int sumatoria = 0;
+        for (int i = 0; i < arreglo.length; i++) {
+            sumatoria += arreglo[i];
         }
         return sumatoria;
     }
